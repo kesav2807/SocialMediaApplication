@@ -17,12 +17,14 @@ const Login = () => {
   const imageRef = useRef(null);
 
   useEffect(() => {
+   
     gsap.fromTo(
       titleRef.current,
       { opacity: 0, y: -30 },
       { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
     );
 
+   
     gsap.fromTo(
       formRef.current?.children,
       { opacity: 0, x: -30 },
@@ -83,6 +85,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#6A1B9A] px-4 text-white font-sans">
       <div className="flex flex-col md:flex-row bg-white text-gray-800 shadow-2xl rounded-3xl overflow-hidden max-w-6xl w-full">
+        
+      
         <div className="md:w-1/2 bg-[#6A1B9A] text-white p-10 flex flex-col justify-center items-center">
           <h2 className="text-3xl font-bold mb-2">Social App</h2>
           <p className="text-sm text-white/90 mb-10 text-center">
@@ -94,7 +98,9 @@ const Login = () => {
             alt="Rocket Illustration"
             className="w-[220px] md:w-[260px] h-auto mx-auto drop-shadow-lg"
           />
-        </div
+        </div>
+
+      
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -118,6 +124,7 @@ const Login = () => {
           )}
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+            
             <div className="relative">
               <User className="absolute left-3 top-3 text-gray-400" size={18} />
               <input
@@ -136,6 +143,8 @@ const Login = () => {
                 <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>
               )}
             </div>
+
+           
             <div className="relative">
               <Lock className="absolute left-3 top-3 text-gray-400" size={18} />
               <input
@@ -162,12 +171,16 @@ const Login = () => {
                 <p className="text-xs text-red-500 mt-1">{formErrors.password}</p>
               )}
             </div>
+
+            
             <div className="flex justify-between items-center text-sm text-gray-500">
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="accent-purple-600" />
                 Remember me
               </label>
             </div>
+
+            
             <button
               type="submit"
               disabled={loading}
@@ -176,6 +189,8 @@ const Login = () => {
               {loading ? 'Logging in...' : 'LOGIN'}
             </button>
           </form>
+
+          
           <p className="text-sm text-center mt-6 text-gray-600">
             Don’t have an account?{' '}
             <Link to="/register" className="text-purple-700 hover:underline font-medium">
