@@ -23,12 +23,8 @@ const Chat = () => {
   const [showUserSearch, setShowUserSearch] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [typingTimeout, setTypingTimeout] = useState(null);
-
-  // Mentions
   const [mentionSuggestions, setMentionSuggestions] = useState([]);
   const [showMentions, setShowMentions] = useState(false);
-
-  // Group admin modal state
   const [showGroupAdmin, setShowGroupAdmin] = useState(false);
   const [groupMembers, setGroupMembers] = useState([]);
   const [groupAdmins, setGroupAdmins] = useState([]);
@@ -38,12 +34,11 @@ const Chat = () => {
   const { socket, sendMessage, sendTyping, joinRoom, connected, onlineUsers } = useSocket();
   const { user } = useAuth();
 
-  // Fetch conversations on mount
+
   useEffect(() => {
     if (user) fetchConversations();
   }, [user]);
 
-  // Socket listeners
   useEffect(() => {
     if (!socket) return;
     socket.on('messageStatus', handleMessageStatus);
@@ -60,20 +55,16 @@ const Chat = () => {
     };
   }, [socket, activeConversation, messages]);
 
-  // Scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Join room and fetch messages when conversation changes
   useEffect(() => {
     if (activeConversation) {
       joinRoom(activeConversation._id);
       fetchMessages(activeConversation);
     }
   }, [activeConversation]);
-
-  // Mark messages as seen
   useEffect(() => {
     if (activeConversation && messages.length && socket) {
       const unread = messages.filter(
@@ -86,8 +77,6 @@ const Chat = () => {
       }
     }
   }, [activeConversation, messages, socket, user._id]);
-
-  // Group admin modal logic
   useEffect(() => {
     if (showGroupAdmin && activeConversation?.type === 'group') {
       const fetchGroupInfo = async () => {
@@ -102,7 +91,6 @@ const Chat = () => {
     }
   }, [showGroupAdmin, activeConversation]);
 
-  // --- Handlers ---
 
   const fetchConversations = async () => {
     try {
@@ -190,11 +178,11 @@ const Chat = () => {
     }
   };
 
-  // Mentions-aware input handler
+
   const handleInputChange = async (e) => {
     setNewMessage(e.target.value);
 
-    // Mentions dropdown logic (works anywhere in input)
+
     const match = e.target.value.slice(0, e.target.selectionStart).match(/@(\w*)$/);
     if (match) {
       setShowMentions(true);
@@ -203,7 +191,7 @@ const Chat = () => {
       setShowMentions(false);
     }
 
-    // Typing indicator logic
+  
     if (!isTyping) {
       setIsTyping(true);
       sendTyping({
@@ -223,7 +211,7 @@ const Chat = () => {
     }, 1000));
   };
 
-  // Insert mention at cursor position
+
   const handleMentionClick = (username) => {
     const input = inputRef.current;
     const cursor = input.selectionStart;
@@ -308,7 +296,7 @@ const Chat = () => {
     setGroupAdmins(admins => [...admins, userId]);
   };
 
-  // Add user to group
+
   const handleAddUserToGroup = async (userId) => {
     const token = localStorage.getItem('token');
     await axios.post(`${API_URL}/chat/rooms/${activeConversation._id}/add`, { userId }, {
@@ -343,7 +331,7 @@ const Chat = () => {
 
   return (
     <div className="ml-64 flex h-screen bg-gradient-to-tr from-white via-gray-50 to-white rounded-l-xl shadow-inner overflow-hidden">
-      {/* Sidebar */}
+
       <aside className="w-full md:w-72 bg-white border-r px-4 py-6 overflow-y-auto shadow-md">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-blue-600">Chats</h2>
@@ -440,7 +428,6 @@ const Chat = () => {
         )}
       </aside>
 
-      {/* Main Chat */}
       <main className="flex-1 flex flex-col">
         {activeConversation ? (
           <>
@@ -506,7 +493,7 @@ const Chat = () => {
                           {msg.sender.username}
                         </div>
                       )}
-                      {/* Mentions highlight */}
+                     
                       <div className="text-sm">
                         {msg.content.split(' ').map((word, i) =>
                           word.startsWith('@') ? (
@@ -552,7 +539,7 @@ const Chat = () => {
               >
                 Send
               </button>
-              {/* Mentions dropdown */}
+             
               {showMentions && mentionSuggestions.length > 0 && (
                 <div className="absolute left-0 bottom-14 bg-white border rounded shadow z-50 mt-1 max-h-40 overflow-y-auto w-64">
                   {mentionSuggestions.map(u => (
@@ -578,7 +565,7 @@ const Chat = () => {
         )}
       </main>
 
-      {/* Group Modal */}
+     
       {showCreateGroup && (
         <div
           className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
@@ -644,7 +631,7 @@ const Chat = () => {
         </div>
       )}
 
-      {/* Group Admin Modal */}
+     
       {showGroupAdmin && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg w-full max-w-md p-6">
@@ -683,7 +670,7 @@ const Chat = () => {
                 </div>
               ))}
             </div>
-            {/* Add members section */}
+         
             {groupAdmins.includes(user._id) && (
               <div className="mt-4">
                 <h4 className="font-bold mb-2">Add Members</h4>
