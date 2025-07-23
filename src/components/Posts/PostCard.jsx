@@ -19,7 +19,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
   const [comments, setComments] = useState(post.comments || []);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Safe check for user
+
   const isLiked = user?._id && Array.isArray(post.likes)
     ? post.likes.some(like =>
         typeof like === 'string' ? like === user._id : like?._id === user._id
@@ -74,7 +74,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-lg hover:shadow-xl border border-purple-100 p-5 mb-6 transition-all">
-      {/* Header */}
+     
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-3">
           {post.author?.avatar ? (
@@ -105,7 +105,6 @@ const PostCard = ({ post, onDelete, onLike }) => {
         )}
       </div>
 
-      {/* Content */}
       <div className="mb-4">
         <p className="text-gray-800">{post.content}</p>
         {post.media?.length > 0 && (
@@ -132,7 +131,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
         )}
       </div>
 
-      {/* Actions */}
+   
       <div className="flex items-center gap-5 mb-4">
         <button
           onClick={handleLike}
@@ -157,7 +156,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
         </button>
       </div>
 
-      {/* Comments */}
+
       {showComments && (
         <div className="mt-4 space-y-4">
           {comments.map((comment, i) => (
@@ -182,7 +181,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
             </div>
           ))}
 
-          {/* Add Comment */}
+       
           <form onSubmit={handleAddComment} className="flex gap-3 mt-2">
             <input
               type="text"
