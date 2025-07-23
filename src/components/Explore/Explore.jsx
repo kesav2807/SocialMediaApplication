@@ -40,7 +40,6 @@ const Explore = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-purple-50 to-white md:pl-72 px-4 py-8">
-      {/* Header */}
       <div className="max-w-6xl mx-auto mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <h1 className="text-3xl font-bold text-purple-600 flex items-center gap-2">
           <Compass size={26} /> Explore
@@ -57,7 +56,6 @@ const Explore = () => {
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-6xl mx-auto">
         {loading ? (
           <div className="flex justify-center items-center h-60">
