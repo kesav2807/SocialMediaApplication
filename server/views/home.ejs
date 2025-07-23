@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e);
+      --glass-bg: rgba(255, 255, 255, 0.07);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --highlight: #c77dff;
+      --text: #f1f1f1;
+      --subtle: #bbbbbb;
+      --accent: #a86ef2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(20px);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      animation: fadeUp 1s ease-out;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #c77dff, #7b2cbf, #240046);
+      z-index: -1;
+      filter: blur(18px);
+      opacity: 0.4;
+      animation: glow 4s linear infinite;
+    }
+
+    .glass-card h1 {
+      font-size: 2rem;
+      color: var(--highlight);
+      margin-bottom: 1rem;
+    }
+
+    .glass-card p {
+      color: var(--subtle);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--highlight);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .button i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    .button:hover {
+      background: var(--accent);
+    }
+
+    footer {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 2rem;
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+    }
+
+    footer a {
+      color: var(--highlight);
+      text-decoration: none;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.3; }
+    }
+
+    @media (max-width: 480px) {
+      .glass-card {
+        padding: 2rem 1.5rem;
+      }
+      .glass-card h1 {
+        font-size: 1.6rem;
+      }
+      .glass-card p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-card">
+    <h1><%= title %></h1>
+    <p><%= description %></p>
+
+    <!-- GitHub Button with Icon -->
+    <a href="https://github.com/kesav2807/SocialMediaApplication" target="_blank" class="button">
+      <i class="fa fa-github"></i> View on GitHub
+    </a>
+
+    <footer>
+      &copy; 2025 <strong>kesav</strong>. All rights reserved.<br />
+      Licensed on <a href="https://github.com/kesav2807" target="_blank">GitHub</a> under kesav's license.
+    </footer>
+  </div>
+</body>
+</html>
