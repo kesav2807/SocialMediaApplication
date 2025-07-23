@@ -72,7 +72,7 @@ export default function Profile() {
 
   return (
     <div className="ml-64 min-h-screen bg-white">
-      {/* Header */}
+     
       <div className="relative h-44 bg-gradient-to-r from-purple-600 to-indigo-600 shadow-md rounded-b-2xl">
         <div className="absolute -bottom-16 left-12">
           {profile.avatar ? (
@@ -89,7 +89,7 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Profile Info */}
+
       <div className="max-w-5xl mx-auto mt-20 px-6 flex justify-between items-start md:flex-row flex-col gap-6">
         <div>
           <div className="flex items-center gap-3">
@@ -139,7 +139,7 @@ export default function Profile() {
         )}
       </div>
 
-      {/* Edit Profile Form */}
+   
       {editing && (
         <div className="max-w-5xl mx-auto mt-6 bg-white p-6 rounded-xl shadow-md">
           <form onSubmit={handleSave} className="space-y-4">
@@ -179,7 +179,7 @@ export default function Profile() {
         </div>
       )}
 
-      {/* Tabs */}
+    
       <div className="max-w-5xl mx-auto mt-8 border-b flex gap-6 px-6 sticky top-20 bg-white z-10">
         {['posts', 'about', 'connections'].map((tabName) => (
           <button
@@ -196,7 +196,7 @@ export default function Profile() {
         ))}
       </div>
 
-      {/* Tab Content */}
+    
       <div className="max-w-5xl mx-auto mt-6 px-6 pb-16">
         {tab === 'about' && (
           <div className="bg-white p-6 rounded-xl shadow-md">
@@ -232,7 +232,7 @@ export default function Profile() {
         )}
       </div>
 
-      {/* Followers/Following Modals */}
+     
       {showFollowers && (
         <Modal title="Followers" onClose={() => setShowFollowers(false)} list={profile.followers} />
       )}
@@ -243,7 +243,7 @@ export default function Profile() {
   );
 }
 
-// ✅ Modal Component with Avatar & Username
+
 function Modal({ title, onClose, list }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
