@@ -6,7 +6,7 @@ A full-featured, scalable **social media platform** with **real-time private and
 
 ## 🔗 Live Demo
 
-> 🚧 _Coming soon..._
+> (https://socialmediaapplication-s66u.onrender.com/)
 
 ---
 
