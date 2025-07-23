@@ -81,7 +81,7 @@ const Notifications = () => {
       <div className="max-w-2xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-purple-700">Notifications</h2>
 
-        {/* Popup */}
+       
         {popup && (
           <div className="fixed top-8 right-8 bg-purple-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce">
             <strong>New:</strong> {popup.message}
@@ -104,7 +104,7 @@ const Notifications = () => {
                 }`}
                 onClick={() => handleNotificationClick(notification)}
               >
-                {/* Avatar */}
+              
                 {notification.sender?.avatar ? (
                   <img
                     src={`https://socialapp-backend-api.onrender.com${notification.sender.avatar}`}
@@ -117,7 +117,7 @@ const Notifications = () => {
                   </div>
                 )}
 
-                {/* Message */}
+                
                 <div className="flex-1">
                   <p className="text-gray-800 font-medium">{notification.message}</p>
                   <p className="text-sm text-gray-500 mt-1">{formatTime(notification.createdAt)}</p>
