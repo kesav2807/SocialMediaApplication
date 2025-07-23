@@ -23,7 +23,7 @@ const CreatePost = ({ onPostCreated }) => {
   const emojiRef = useRef(null);
   const { user } = useAuth();
 
-  // Close emoji picker when clicking outside
+ 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (emojiRef.current && !emojiRef.current.contains(event.target)) {
@@ -108,7 +108,7 @@ const CreatePost = ({ onPostCreated }) => {
       textareaRef.current.focus();
     }, 0);
 
-    setShowEmojiPicker(false); // Close after selecting emoji
+    setShowEmojiPicker(false); 
   };
 
   return (
@@ -119,7 +119,7 @@ const CreatePost = ({ onPostCreated }) => {
       className="bg-white rounded-xl p-5 border shadow-sm relative"
     >
       <form onSubmit={handleSubmit}>
-        {/* Top row */}
+       
         <div className="flex items-start gap-3 mb-4">
           <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-base font-bold text-purple-700">
             {user?.username?.charAt(0).toUpperCase() || 'U'}
@@ -135,7 +135,7 @@ const CreatePost = ({ onPostCreated }) => {
           />
         </div>
 
-        {/* Emoji Picker */}
+      
         {showEmojiPicker && (
           <div ref={emojiRef} className="absolute z-50 top-28 left-16 sm:left-24 shadow-lg bg-white rounded">
             <div className="flex justify-end p-2">
@@ -147,7 +147,7 @@ const CreatePost = ({ onPostCreated }) => {
           </div>
         )}
 
-        {/* Previews */}
+   
         {previewURLs.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
             {previewURLs.map((url, index) => (
@@ -169,7 +169,7 @@ const CreatePost = ({ onPostCreated }) => {
           </div>
         )}
 
-        {/* Footer */}
+   
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex gap-6 text-sm text-gray-600">
             <label htmlFor="media-upload" className="flex items-center gap-1 cursor-pointer hover:text-purple-600">
