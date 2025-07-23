@@ -47,13 +47,9 @@ const Home = () => {
   return (
     <main className="ml-64 min-h-screen bg-[#f7f9fa] py-10 px-4">
       <div className="max-w-2xl mx-auto space-y-10">
-
-        {/* Create Post UI */}
         <div className="bg-white border rounded-2xl px-4 py-3 shadow-sm">
           <CreatePost onPostCreated={handlePostCreated} />
         </div>
-
-        {/* Posts */}
         {posts.length === 0 ? (
           <div className="bg-white border rounded-2xl py-16 text-center text-gray-600 shadow-sm">
             <h2 className="text-lg font-semibold text-gray-800 mb-1">No posts yet</h2>
