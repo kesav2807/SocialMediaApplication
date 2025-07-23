@@ -117,9 +117,9 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#6A1B9A] px-4 py-12">
       <div className="flex flex-col md:flex-row bg-white shadow-2xl rounded-3xl overflow-hidden max-w-6xl w-full">
-        {/* Left Side */}
+        
         <div className="md:w-1/2 bg-[#6A1B9A] text-white p-10 flex flex-col justify-center items-center">
-          <h2 className="text-3xl font-bold mb-3">Welcome Aboard</h2>
+          <h2 className="text-3xl font-bold mb-3">Welcome Social App</h2>
           <p className="text-sm text-white/80 mb-8 text-center">
             Let’s get you set up to launch your journey.
           </p>
@@ -129,8 +129,6 @@ const Register = () => {
             className="w-[250px] md:w-[280px] object-contain"
           />
         </div>
-
-        {/* Right Side */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
