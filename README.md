@@ -3,6 +3,11 @@
 A full-featured, scalable **social media platform** with **real-time private and group chat**, built using **React.js**, **Node.js**, **Express**, **MongoDB**, and **Socket.io**.
 
 ---
+## Run a Project 
+    npm i 
+- **Frontend** npm run dev
+- **Backend** cd server&&node index.js
+
 
 ## 🔗 Live Demo
 
