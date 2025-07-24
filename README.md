@@ -10,11 +10,11 @@ A full-featured, scalable **social media platform** with **real-time private and
 - **Backend**
 -     cd server
 -     node index.js
-
+---
 
 ## 🔗 Live Demo
 
-> (https://socialmediaapplication-s66u.onrender.com/)
+https://socialmediaapplication-s66u.onrender.com/
 
 ---
 
