@@ -5,8 +5,11 @@ A full-featured, scalable **social media platform** with **real-time private and
 ---
 ## Run a Project 
     npm i 
-- **Frontend** npm run dev
-- **Backend** cd server&&node index.js
+- **Frontend**
+-     npm run dev
+- **Backend**
+-     cd server
+-     node index.js
 
 
 ## 🔗 Live Demo
