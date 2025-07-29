@@ -262,7 +262,7 @@ function Modal({ title, onClose, list }) {
               >
                 {user.avatar ? (
                   <img
-                    src={`http://localhost:5000${user.avatar}`}
+                    src={`https://socialapp-backend-api.onrender.com${user.avatar}`}
                     alt={user.username}
                     className="w-10 h-10 rounded-full object-cover border"
                   />

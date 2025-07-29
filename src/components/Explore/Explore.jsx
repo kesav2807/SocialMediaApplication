@@ -4,7 +4,7 @@ import { Compass, Search } from 'lucide-react';
 import PostCard from '../Posts/PostCard';
 import { motion } from 'framer-motion';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
 
 const Explore = () => {
   const [posts, setPosts] = useState([]);

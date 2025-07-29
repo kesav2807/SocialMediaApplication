@@ -8,7 +8,7 @@ import data from '@emoji-mart/data';
 import Slider from 'react-slick';
 import { formatDistanceToNow } from 'date-fns';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
 
 const PostCard = ({ post, onDelete, onLike }) => {
   const { user } = useAuth();
@@ -83,7 +83,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
         <div className="flex items-center gap-3">
           {post.author?.avatar ? (
             <img
-              src={`http://localhost:5000${post.author.avatar}`}
+              src={`https://socialapp-backend-api.onrender.com${post.author.avatar}`}
               alt="avatar"
               className="w-10 h-10 rounded-full object-cover"
             />
@@ -121,13 +121,13 @@ const PostCard = ({ post, onDelete, onLike }) => {
                 <div key={idx}>
                   {item.type === 'image' ? (
                     <img
-                      src={`http://localhost:5000${item.url}`}
+                      src={`https://socialapp-backend-api.onrender.com${item.url}`}
                       alt="media"
                       className="w-full max-h-[500px] object-cover"
                     />
                   ) : (
                     <video
-                      src={`http://localhost:5000${item.url}`}
+                      src={`https://socialapp-backend-api.onrender.com${item.url}`}
                       controls
                       className="w-full max-h-[500px] object-cover"
                     />
@@ -172,7 +172,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
             <div key={i} className="flex items-start gap-3">
               {comment.author?.avatar ? (
                 <img
-                  src={`http://localhost:5000${comment.author.avatar}`}
+                  src={`https://socialapp-backend-api.onrender.com${comment.author.avatar}`}
                   alt="commenter"
                   className="w-8 h-8 rounded-full object-cover"
                 />

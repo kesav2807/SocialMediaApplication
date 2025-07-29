@@ -4,7 +4,7 @@ import { useSocket } from '../../contexts/SocketContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { UserPlus, Users, Search, X } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
 
 const Chat = () => {
   const [conversations, setConversations] = useState([]);
@@ -407,7 +407,7 @@ const Chat = () => {
                   src={
                     c.type === 'group'
                       ? '/group-icon.png'
-                      : `http://localhost:5000${
+                      : `https://socialapp-backend-api.onrender.com${
                           participant?.avatar || '/default-avatar.png'
                         }`
                   }
@@ -471,7 +471,7 @@ const Chat = () => {
                     {!isOwn &&
                       (msg.sender.avatar ? (
                         <img
-                          src={`http://localhost:5000${msg.sender.avatar}`}
+                          src={`https://socialapp-backend-api.onrender.com${msg.sender.avatar}`}
                           alt={msg.sender.username}
                           className="w-9 h-9 rounded-full object-cover border-2 border-blue-100 shadow-sm"
                         />

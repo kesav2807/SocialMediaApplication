@@ -12,7 +12,7 @@ export const useSocket = () => {
   return context;
 };
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://socialapp-backend-api.onrender.com';
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
@@ -29,7 +29,7 @@ export const SocketProvider = ({ children }) => {
         return;
       }
 
-      const newSocket = io('http://localhost:5000', {
+      const newSocket = io('https://socialapp-backend-api.onrender.com', {
         auth: { token },
         headers: {
           Authorization: `Bearer ${token}`

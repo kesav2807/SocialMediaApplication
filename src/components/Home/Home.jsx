@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 import CreatePost from '../Posts/CreatePost';
 import PostCard from '../Posts/PostCard';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);

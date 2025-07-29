@@ -16,7 +16,7 @@ import {
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -189,7 +189,7 @@ const Navbar = () => {
                   >
                     {u.avatar ? (
                       <img
-                        src={`http://localhost:5000${u.avatar}`}
+                        src={`https://socialapp-backend-api.onrender.com${u.avatar}`}
                         alt={u.username}
                         className="w-8 h-8 rounded-full"
                       />
@@ -223,7 +223,7 @@ const Navbar = () => {
           >
             {user?.avatar ? (
               <img
-                src={`http://localhost:5000${user.avatar}`}
+                src={`https://socialapp-backend-api.onrender.com${user.avatar}`}
                 alt="avatar"
                 className="w-8 h-8 rounded-full"
               />
