@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import PostCard from '../Posts/PostCard';
 import { X } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export default function Profile() {
   const { userId } = useParams();
@@ -77,7 +77,7 @@ export default function Profile() {
         <div className="absolute -bottom-16 left-12">
           {profile.avatar ? (
             <img
-              src={`https://socialapp-backend-api.onrender.com${profile.avatar}`}
+              src={`http://localhost:5000${profile.avatar}`}
               className="w-32 h-32 rounded-full border-4 border-white object-cover shadow-md"
               alt="avatar"
             />
@@ -262,7 +262,7 @@ function Modal({ title, onClose, list }) {
               >
                 {user.avatar ? (
                   <img
-                    src={`https://socialapp-backend-api.onrender.com${user.avatar}`}
+                    src={`http://localhost:5000${user.avatar}`}
                     alt={user.username}
                     className="w-10 h-10 rounded-full object-cover border"
                   />

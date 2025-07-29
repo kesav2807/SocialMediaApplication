@@ -8,7 +8,7 @@ import data from '@emoji-mart/data';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const MAX_CHAR = 280;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 

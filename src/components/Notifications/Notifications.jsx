@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -107,7 +107,7 @@ const Notifications = () => {
               
                 {notification.sender?.avatar ? (
                   <img
-                    src={`https://socialapp-backend-api.onrender.com${notification.sender.avatar}`}
+                    src={`http://localhost:5000${notification.sender.avatar}`}
                     alt={notification.sender.username}
                     className="w-12 h-12 rounded-full object-cover"
                   />

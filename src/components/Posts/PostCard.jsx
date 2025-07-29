@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import {
-  Heart,
-  MessageCircle,
-  Trash2,
-  Send
-} from 'lucide-react';
+import { Heart, MessageCircle, Trash2, Send } from 'lucide-react';
+import Picker from '@emoji-mart/react';
+import data from '@emoji-mart/data';
+import Slider from 'react-slick';
+import { formatDistanceToNow } from 'date-fns';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://socialapp-backend-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const PostCard = ({ post, onDelete, onLike }) => {
   const { user } = useAuth();
@@ -18,7 +17,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
   const [newComment, setNewComment] = useState('');
   const [comments, setComments] = useState(post.comments || []);
   const [loading, setLoading] = useState(false);
-
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const isLiked = user?._id && Array.isArray(post.likes)
     ? post.likes.some(like =>
@@ -57,6 +56,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
       });
       setComments(prev => [...prev, res.data.comment]);
       setNewComment('');
+      setShowEmojiPicker(false);
     } catch (err) {
       console.error('Comment error:', err);
     } finally {
@@ -64,22 +64,26 @@ const PostCard = ({ post, onDelete, onLike }) => {
     }
   };
 
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+  const addEmoji = (emoji) => {
+    setNewComment((prev) => prev + emoji.native);
+  };
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl border border-purple-100 p-5 mb-6 transition-all">
-     
+    <div className="bg-white rounded-xl shadow-lg border border-purple-100 p-5 mb-6 transition-all">
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-3">
           {post.author?.avatar ? (
             <img
-              src={`https://socialapp-backend-api.onrender.com${post.author.avatar}`}
+              src={`http://localhost:5000${post.author.avatar}`}
               alt="avatar"
               className="w-10 h-10 rounded-full object-cover"
             />
@@ -95,7 +99,9 @@ const PostCard = ({ post, onDelete, onLike }) => {
             >
               {post.author.username}
             </Link>
-            <div className="text-sm text-gray-500">{formatDate(post.createdAt)}</div>
+            <div className="text-sm text-gray-500">
+              {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
+            </div>
           </div>
         </div>
         {user?._id === post.author._id && (
@@ -105,33 +111,35 @@ const PostCard = ({ post, onDelete, onLike }) => {
         )}
       </div>
 
+      {/* Content */}
       <div className="mb-4">
         <p className="text-gray-800">{post.content}</p>
         {post.media?.length > 0 && (
-          <div className="grid gap-3 mt-3">
-            {post.media.map((item, idx) => (
-              <div key={idx}>
-                {item.type === 'image' ? (
-                  <img
-                    src={`https://socialapp-backend-api.onrender.com${item.url}`}
-                    alt="Post media"
-                    className="rounded-lg w-full object-cover max-h-[500px]"
-                    loading="lazy"
-                  />
-                ) : (
-                  <video
-                    src={`https://socialapp-backend-api.onrender.com${item.url}`}
-                    controls
-                    className="rounded-lg w-full max-h-[500px]"
-                  />
-                )}
-              </div>
-            ))}
+          <div className="mt-3 rounded-lg overflow-hidden">
+            <Slider {...settings}>
+              {post.media.map((item, idx) => (
+                <div key={idx}>
+                  {item.type === 'image' ? (
+                    <img
+                      src={`http://localhost:5000${item.url}`}
+                      alt="media"
+                      className="w-full max-h-[500px] object-cover"
+                    />
+                  ) : (
+                    <video
+                      src={`http://localhost:5000${item.url}`}
+                      controls
+                      className="w-full max-h-[500px] object-cover"
+                    />
+                  )}
+                </div>
+              ))}
+            </Slider>
           </div>
         )}
       </div>
 
-   
+      {/* Actions */}
       <div className="flex items-center gap-5 mb-4">
         <button
           onClick={handleLike}
@@ -140,6 +148,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
         >
           <Heart
             size={18}
+            className={`transition-transform ${isLiked ? 'scale-110 text-purple-600' : 'text-gray-500'}`}
             fill={isLiked ? '#9333EA' : 'none'}
             stroke={isLiked ? '#9333EA' : 'currentColor'}
           />
@@ -156,14 +165,14 @@ const PostCard = ({ post, onDelete, onLike }) => {
         </button>
       </div>
 
-
+      {/* Comments */}
       {showComments && (
         <div className="mt-4 space-y-4">
           {comments.map((comment, i) => (
             <div key={i} className="flex items-start gap-3">
               {comment.author?.avatar ? (
                 <img
-                  src={`https://socialapp-backend-api.onrender.com${comment.author.avatar}`}
+                  src={`http://localhost:5000${comment.author.avatar}`}
                   alt="commenter"
                   className="w-8 h-8 rounded-full object-cover"
                 />
@@ -181,23 +190,39 @@ const PostCard = ({ post, onDelete, onLike }) => {
             </div>
           ))}
 
-       
-          <form onSubmit={handleAddComment} className="flex gap-3 mt-2">
-            <input
-              type="text"
-              placeholder="Add a comment..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              disabled={loading}
-              className="flex-1 px-3 py-2 text-sm border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <button
-              type="submit"
-              disabled={loading || !newComment.trim()}
-              className="bg-purple-600 text-white px-4 py-2 text-sm rounded-md hover:bg-purple-700 disabled:opacity-50 flex items-center gap-1"
-            >
-              <Send size={14} /> Post
-            </button>
+          {/* Add Comment */}
+          <form onSubmit={handleAddComment} className="flex flex-col gap-2 relative">
+            <div className="flex gap-2 items-center">
+              <input
+                type="text"
+                placeholder="Add a comment..."
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                disabled={loading}
+                className="flex-1 px-3 py-2 text-sm border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+              <button
+                type="button"
+                onClick={() => setShowEmojiPicker(prev => !prev)}
+                className="text-xl"
+                title="Emoji"
+              >
+                😊
+              </button>
+              <button
+                type="submit"
+                disabled={loading || !newComment.trim()}
+                className="bg-purple-600 text-white px-4 py-2 text-sm rounded-md hover:bg-purple-700 disabled:opacity-50 flex items-center gap-1"
+              >
+                <Send size={14} /> Post
+              </button>
+            </div>
+
+            {showEmojiPicker && (
+              <div className="absolute bottom-full left-0 mb-2 z-50">
+                <Picker data={data} onEmojiSelect={addEmoji} theme="light" />
+              </div>
+            )}
           </form>
         </div>
       )}
