@@ -8,6 +8,9 @@ A full-featured, scalable **social media platform** with **real-time private and
 - **Frontend**
 -     npm run dev
 - **Backend**
+-     "start":"server&&nodemon index.js"
+-     npm stert
+or
 -     cd server
 -     node index.js
 ---
